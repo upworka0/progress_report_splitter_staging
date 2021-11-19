@@ -386,12 +386,12 @@ class ReportSplitter:
                     else:
                         # Append files if it's not zip or csv type
                         _, file_type = os.path.splitext(filename)
-                        # if 'pdf' not in file_type:
-                        self.attach_files.append({
-                            'key': f'OLD - {filename}',
-                            'type': file_type,
-                            'data': io.BytesIO(z.read(filename))
-                        })
+                        if 'pdf' not in file_type:
+                            self.attach_files.append({
+                                'key': f'OLD - {filename}',
+                                'type': file_type,
+                                'data': io.BytesIO(z.read(filename))
+                            })
 
                 # append report pdf to attachment.
                 pdf_url = "{}?org_id={}&course_ids={}".format(pdf_report_endpoint, input_dict['org_id'], ",".join(course_ids))
@@ -399,7 +399,7 @@ class ReportSplitter:
                 pdf_data = io.BytesIO(res.content)
                 filename = res.headers['content-disposition'].split("filename=")[1]
                 self.attach_files.append({
-                    'key': f'NEW - {filename}',
+                    'key': filename,
                     'type': 'pdf',
                     'data': pdf_data
                 })
