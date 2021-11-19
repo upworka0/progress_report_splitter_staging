@@ -1,0 +1,7 @@
+boto3==1.14.43
+openpyxl==3.0.4
+sendgrid==6.5.0
+pytz==2020.1
+pandas
+bugsnag
+requests

@@ -1,0 +1,26 @@
+{
+  "version": "2.0",
+  "app_name": "progress-report-generator-staging",
+  "environment_variables": {
+    "BUCKET_NAME": "getinclusive-ppj-private",
+    "BUCKET_NAME2": "getinclusive-ppj-reports",
+    "INPUT_TEMPLATE_KEY": "progress_reports/Template.xlsx",
+    "SENDGRID_KEY": "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",
+    "QUEUE_NAME": "staging-progress",
+    "BUGSNAG_KEY": "889c83d6c1520e8167c7c20967b46f1b",
+    "PDF_REPORT_LINK": "https://sf72v4f1ib.execute-api.us-east-1.amazonaws.com/api/pdf-reports"
+  },
+  "stages": {
+    "dev": {
+      "lambda_functions": {
+        "handle_sqs_message": {
+          "lambda_timeout": 300,
+          "lambda_memory_size": 1000
+        }
+      },
+      "api_gateway_stage": "api",
+      "autogen_policy": false,
+      "iam_policy_file": "policy-base.json"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.chalice/deployments/
+.env
+__pycache__/
+.idea/
+.pytest_cache/
